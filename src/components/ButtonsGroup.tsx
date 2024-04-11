@@ -15,12 +15,14 @@ const ButtonsGroup = () => {
     >
       <Button
         order={1}
+        isActive={false}
         color={ButtonColors.BLUE}
         direction="vertical"
         className="col-start-2"
       />
       <Button
         order={2}
+        isActive={false}
         color={ButtonColors.RED}
         direction="horizontal"
         className="col-start-1"
@@ -28,12 +30,14 @@ const ButtonsGroup = () => {
       <div className="center col-start-2 w-2"></div>
       <Button
         order={3}
+        isActive={true}
         color={ButtonColors.GREEN}
         direction="horizontal"
         className="col-start-3"
       />
       <Button
         order={4}
+        isActive={false}
         color={ButtonColors.VIOLET}
         direction="vertical"
         className="col-start-2"
