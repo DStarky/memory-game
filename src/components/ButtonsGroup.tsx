@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 
+import { ButtonColors } from '../types';
+
 import Button from './Button';
 
 const ButtonsGroup = () => {
@@ -13,26 +15,26 @@ const ButtonsGroup = () => {
     >
       <Button
         order={1}
-        color="blue"
+        color={ButtonColors.BLUE}
         direction="vertical"
         className="col-start-2"
       />
       <Button
         order={2}
-        color="green"
+        color={ButtonColors.RED}
         direction="horizontal"
         className="col-start-1"
       />
       <div className="center col-start-2 w-2"></div>
       <Button
         order={3}
-        color="red"
+        color={ButtonColors.GREEN}
         direction="horizontal"
         className="col-start-3"
       />
       <Button
         order={4}
-        color="violet"
+        color={ButtonColors.VIOLET}
         direction="vertical"
         className="col-start-2"
       />

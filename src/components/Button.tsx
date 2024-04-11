@@ -1,11 +1,6 @@
 import clsx from 'clsx';
 
-enum ButtonColors {
-  VIOLET = 'violet',
-  RED = 'red',
-  BLUE = 'blue',
-  GREEN = 'green',
-}
+import { ButtonColors } from '../types';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   order: number;
