@@ -1,20 +1,27 @@
 import clsx from 'clsx';
 
+enum ButtonColors {
+  VIOLET = 'violet',
+  RED = 'red',
+  BLUE = 'blue',
+  GREEN = 'green',
+}
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  color: 'violet' | 'red' | 'blue' | 'green';
+  order: number;
+  color: ButtonColors;
   direction: 'horizontal' | 'vertical';
 }
 
 const Button = ({
+  order,
   color,
   className,
   direction = 'horizontal',
+  ...rest
 }: ButtonProps) => {
-  const colorStyles = {
-    violet: 'bg-violet-500 border-b-violet-700',
-    red: 'bg-red-500 border-b-red-700',
-    blue: 'bg-blue-500 border-b-blue-700',
-    green: 'bg-green-500 border-b-green-700',
+  const getColorStyleString = (color: string): string => {
+    return `bg-${color}-400 border-b-${color}-700 hover:bg-${color}-500`;
   };
 
   const directionStyles = {
@@ -22,13 +29,20 @@ const Button = ({
     vertical: 'w-16 h-48 max-md:h-32 max-md:w-12 max-sm:h-24 max-sm:w-8',
   };
 
-  const buttonStyle = `items-center hover:opacity-95 justify-center ring-none rounded-lg shadow-lg font-semibold py-2 px-4 ${colorStyles[color]} ${directionStyles[direction]}`;
-  const style = clsx(buttonStyle, directionStyles, className);
+  const buttonBaseStyles =
+    'items-center justify-center ring-none rounded-lg shadow-lg font-semibold py-2 px-4';
+
+  const colorStyle = getColorStyleString(color);
+  const directionStyle = directionStyles[direction];
+
+  const style = clsx(buttonBaseStyles, colorStyle, directionStyle, className);
 
   return (
-    <>
-      <button className={style} />
-    </>
+    <button
+      className={style}
+      {...rest}
+    />
   );
 };
+
 export default Button;
