@@ -14,6 +14,7 @@ const ButtonsGroup = () => {
   });
 
   const [isFirstRender, setIsFirstRender] = useState(true);
+  const [areButtonsDisabled, setAreButtonsDisabled] = useState(false);
 
   const seq = [1, 2, 3, 4];
 
@@ -74,12 +75,14 @@ const ButtonsGroup = () => {
           color={ButtonColors.BLUE}
           direction="vertical"
           className="col-start-2"
+          disabled={areButtonsDisabled}
         />
         <Button
           isActive={buttonStates[2]}
           color={ButtonColors.RED}
           direction="horizontal"
           className="col-start-1"
+          disabled={areButtonsDisabled}
         />
         <div className="center col-start-2 w-2"></div>
         <Button
@@ -87,12 +90,14 @@ const ButtonsGroup = () => {
           color={ButtonColors.GREEN}
           direction="horizontal"
           className="col-start-3"
+          disabled={areButtonsDisabled}
         />
         <Button
           isActive={buttonStates[4]}
           color={ButtonColors.VIOLET}
           direction="vertical"
           className="col-start-2"
+          disabled={areButtonsDisabled}
         />
       </div>
     </motion.div>
