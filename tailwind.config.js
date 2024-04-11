@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'primary': ["Bungee Spice"]
+        'primary': ["Bungee Spice"],
+        'title': ["Poppins"]
       }
     },
   },
