@@ -25,8 +25,8 @@ const Button = ({
   };
 
   const directionStyles = {
-    horizontal: 'h-16 w-48 max-md:h-12 max-md:w-32 max-sm:h-8 max-sm:w-24',
-    vertical: 'w-16 h-48 max-md:h-32 max-md:w-12 max-sm:h-24 max-sm:w-8',
+    horizontal: 'h-16 w-36 max-md:h-12 max-md:w-24 max-sm:h-8 max-sm:w-16',
+    vertical: 'w-16 h-36 max-md:h-24 max-md:w-12 max-sm:h-16 max-sm:w-8',
   };
 
   const buttonBaseStyles =
