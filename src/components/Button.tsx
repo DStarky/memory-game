@@ -3,14 +3,12 @@ import { getColorVariant } from '../helpers/getColorVariant';
 import { ButtonColors } from '../types';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  order: number;
   color: ButtonColors;
   direction: 'horizontal' | 'vertical';
   isActive: boolean;
 }
 
 const Button = ({
-  order,
   color,
   className,
   isActive,
