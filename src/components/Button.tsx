@@ -1,8 +1,11 @@
-interface ButtonProps {
+import clsx from 'clsx';
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color: 'violet' | 'red' | 'blue' | 'green';
+  direction: 'horizontal' | 'vertical';
 }
 
-const Button = ({ color }: ButtonProps) => {
+const Button = ({ color, className, direction = 'horizontal' }: ButtonProps) => {
   const colorStyles = {
     violet: 'bg-violet-500 border-b-violet-700',
     red: 'bg-red-500 border-b-red-700',
@@ -10,11 +13,17 @@ const Button = ({ color }: ButtonProps) => {
     green: 'bg-green-500 border-b-green-700',
   };
 
-  const buttonStyle = `group flex h-16 w-48 items-center hover:opacity-95 justify-center ring-none rounded-lg shadow-lg font-semibold py-2 px-4 ${colorStyles[color]}`;
+  const directionStyles = {
+    horizontal: 'h-16 w-48 ',
+    vertical: 'w-16 h-48 ',
+  };
+
+  const buttonStyle = `items-center hover:opacity-95 justify-center ring-none rounded-lg shadow-lg font-semibold py-2 px-4 ${colorStyles[color]} ${directionStyles[direction]}`;
+  const style = clsx(buttonStyle, directionStyles, className);
 
   return (
     <>
-      <button className={buttonStyle} />
+      <button className={style} />
     </>
   );
 };
