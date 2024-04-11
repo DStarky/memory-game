@@ -17,7 +17,9 @@ const Title = ({ isTitleVisible, onFinish }: TitleProps) => {
             transition={{ duration: 1, delay: 1 }}
             onAnimationComplete={onFinish}
           >
-            <h1 className="font-primary text-[128px] uppercase">memory</h1>
+            <h1 className="font-primary text-[128px] max-md:text-[64px] max-sm:text-[48px] uppercase">
+              memory
+            </h1>
           </motion.div>
         </div>
       )}

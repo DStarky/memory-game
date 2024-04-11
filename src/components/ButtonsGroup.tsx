@@ -9,7 +9,7 @@ const ButtonsGroup = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 1, delay: 2 }}
-      className="grid grid-cols-[1fr_64px_1fr] gap-8 justify-items-center"
+      className="grid grid-cols-[1fr_64px_1fr]  max-sm:grid-cols-[1fr_32px_1fr] gap-8 max-md:gap-6 max-sm:gap-4 justify-items-center"
     >
       <Button
         color="blue"
@@ -21,7 +21,7 @@ const ButtonsGroup = () => {
         direction="horizontal"
         className="col-start-1"
       />
-      <div className='center col-start-2 w-2'></div>
+      <div className="center col-start-2 w-2"></div>
       <Button
         color="red"
         direction="horizontal"
