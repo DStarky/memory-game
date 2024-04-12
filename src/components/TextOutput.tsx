@@ -1,42 +1,45 @@
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 interface TextOutputProps {
   seq: number[];
   onFinish: () => void;
-  disabled: boolean;
-  index: number;
-  setIndex: (index: number) => void;
-  isError: boolean;
+  output: string | number;
+  setOutput: React.Dispatch<React.SetStateAction<string | number>>;
 }
 
-const TextOutput = ({
-  seq,
-  onFinish,
-  disabled,
-  index,
-  setIndex,
-  isError,
-}: TextOutputProps) => {
+const TextOutput = ({ seq, onFinish, output, setOutput }: TextOutputProps) => {
   useEffect(() => {
-    const tick = () => {
-      setIndex(i => {
-        if (i === seq.length - 1) {
-          clearInterval(id);
-          onFinish();
-          return i;
-        }
-        return i + 1;
-      });
+    const render = async () => {
+      for (let index = 0; index < seq.length; index++) {
+        await new Promise<void>(resolve => {
+          setTimeout(() => {
+            setOutput(seq[index] + Math.random()); // для выполнения анимации нужно, чтобы стейт менялся. В случае одинаковых чисел подряд анимация не сработает, поэтому добавляем капельку рандома
+            resolve();
+          }, 1000);
+        });
+      }
+
+      setTimeout(() => {
+        setOutput('повторите');
+        onFinish();
+      }, 1000);
     };
 
-    const id = setInterval(tick, 1000);
+    render();
+  }, [seq]);
 
-    return () => clearInterval(id);
-  }, [seq, onFinish]);
+  const curOutput = typeof output === 'number' ? Math.floor(output) : output;
 
   return (
     <div className="p-12 border-[1px] rounded-md min-w-[320px] flex justify-center text-2xl border-slate-700 text-slate-700">
-      {isError ? 'ошибка' : seq[index]}
+      <motion.span
+        key={output}
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+      >
+        {curOutput}
+      </motion.span>
     </div>
   );
 };
