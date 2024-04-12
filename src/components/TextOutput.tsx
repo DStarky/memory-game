@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 
-const TextOutput = () => {
-  const [seq, setSeq] = useState<number[]>([1, 2, 3, 4]);
+import { cn } from '../helpers/cn';
+
+interface TextOutputProps {
+  seq: number[];
+  onFinish: () => void;
+  disabled: boolean;
+}
+
+const TextOutput = ({ seq, onFinish, disabled }: TextOutputProps) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -9,6 +16,7 @@ const TextOutput = () => {
       setIndex(i => {
         if (i === seq.length - 1) {
           clearInterval(id);
+          onFinish();
           return i;
         }
         return i + 1;
@@ -19,9 +27,10 @@ const TextOutput = () => {
 
     return () => clearInterval(id);
   }, [seq]);
+
   return (
-    <div className="p-12 border-slate-500 border-[1px] rounded-md min-w-[320px] flex justify-center">
-      {seq[index % seq.length]}
+    <div className="p-12 border-[1px] rounded-md min-w-[320px] flex justify-center text-2xl border-slate-700 text-slate-700">
+      {seq[index]}
     </div>
   );
 };
