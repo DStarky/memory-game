@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import ButtonsGroup from './components/ButtonsGroup';
 import Title from './components/Title';
+import TextVariant from './components/TextVariant';
 
 const App = () => {
   const [isTitleVisible, setIsTitleVisible] = useState(true);
@@ -12,7 +13,7 @@ const App = () => {
   };
   return (
     <section className="flex h-screen items-center justify-center">
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isTitleVisible ? (
           <Title
             key="title"
@@ -22,7 +23,8 @@ const App = () => {
         ) : (
           <ButtonsGroup key="butons" />
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
+      <TextVariant />
     </section>
   );
 };
