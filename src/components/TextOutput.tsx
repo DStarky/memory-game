@@ -1,16 +1,22 @@
 import { useEffect, useState } from 'react';
 
-import { cn } from '../helpers/cn';
-
 interface TextOutputProps {
   seq: number[];
   onFinish: () => void;
   disabled: boolean;
+  index: number;
+  setIndex: (index: number) => void;
+  isError: boolean;
 }
 
-const TextOutput = ({ seq, onFinish, disabled }: TextOutputProps) => {
-  const [index, setIndex] = useState(0);
-
+const TextOutput = ({
+  seq,
+  onFinish,
+  disabled,
+  index,
+  setIndex,
+  isError,
+}: TextOutputProps) => {
   useEffect(() => {
     const tick = () => {
       setIndex(i => {
@@ -26,11 +32,11 @@ const TextOutput = ({ seq, onFinish, disabled }: TextOutputProps) => {
     const id = setInterval(tick, 1000);
 
     return () => clearInterval(id);
-  }, [seq]);
+  }, [seq, onFinish]);
 
   return (
     <div className="p-12 border-[1px] rounded-md min-w-[320px] flex justify-center text-2xl border-slate-700 text-slate-700">
-      {seq[index]}
+      {isError ? 'ошибка' : seq[index]}
     </div>
   );
 };
