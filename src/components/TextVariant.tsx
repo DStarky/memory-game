@@ -19,16 +19,14 @@ const TextVariant = () => {
 
       if (!isEqual) {
         setIsError(true);
+        setAreButtonsDisabled(true);
 
         setTimeout(() => {
           setIsError(false);
-        }, 1000);
-
-        setTimeout(() => {
           setAnswer([]);
-          setIndex(0);
+          setIndex(-1);
           setSeq([3, 2]);
-        }, 1500);
+        }, 1000);
       }
     }
   }, [seq, answer]);
