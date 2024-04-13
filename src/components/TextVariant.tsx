@@ -58,7 +58,10 @@ const TextVariant = () => {
           Рекорд: <strong>{localStorage.getItem('record')}</strong>
         </p>
         <p className="text-xl transition-all">
-          Уровень: <strong>{JSON.parse(localStorage.getItem('level')!).length}</strong>
+          Уровень:{' '}
+          <strong>
+            {JSON.parse(localStorage.getItem('level')!).length || 1}
+          </strong>
         </p>
       </div>
 
