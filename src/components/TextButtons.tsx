@@ -5,7 +5,7 @@ interface TextButtonsProps {
 
 const TextButtons = ({ disabled, onButtonClicked }: TextButtonsProps) => {
   return (
-    <div className="flex justify-between mt-8">
+    <div className="grid grid-cols-2 gap-4 mt-4">
       <button
         disabled={disabled}
         onClick={() => onButtonClicked(1)}

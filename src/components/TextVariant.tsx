@@ -42,6 +42,9 @@ const TextVariant = () => {
 
   useEffect(() => {
     localStorage.setItem('level', JSON.stringify(seq));
+    const level = JSON.parse(localStorage.getItem('level')!).length;
+    const record = localStorage.getItem('record') || 0;
+    if (level > +record) localStorage.setItem('record', level.toString());
   }, [seq]);
 
   const onFinish = () => {
@@ -50,9 +53,14 @@ const TextVariant = () => {
 
   return (
     <div>
-      <h1 className="text-4xl absolute top-12 left-1/2 -translate-x-1/2 transition-all">
-        Уровень: <strong>{seq.length}</strong>
-      </h1>
+      <div className="mb-8">
+        <p className="text-xl  transition-all">
+          рекорд: <strong>{localStorage.getItem('record')}</strong>
+        </p>
+        <p className="text-xl transition-all">
+          уровень: <strong>{seq.length}</strong>
+        </p>
+      </div>
 
       <TextOutput
         seq={seq}
