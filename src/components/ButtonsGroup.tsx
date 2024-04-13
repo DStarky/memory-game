@@ -14,7 +14,7 @@ const ButtonsGroup = () => {
   });
 
   const [isFirstRender, setIsFirstRender] = useState(true);
-  const [areButtonsDisabled, setAreButtonsDisabled] = useState(false);
+  const [areButtonsDisabled, _setAreButtonsDisabled] = useState(false);
 
   const seq = [1, 2, 3, 4];
 
