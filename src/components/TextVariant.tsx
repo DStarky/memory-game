@@ -15,18 +15,26 @@ const TextVariant = () => {
   const handleButtonClicked = (buttonNumber: number) => {
     answer.push(buttonNumber);
 
-    if (!areButtonsDisabled) {
-      const isEqual = answer.every((value, index) => value === seq[index]);
+    const isEqual = answer.every((value, index) => value === seq[index]);
 
-      if (!isEqual) {
-        setOutput('Ошибка');
-        setAreButtonsDisabled(true);
+    if (isEqual && answer.length === seq.length) {
+      setOutput('все верно');
+      setAreButtonsDisabled(true);
 
-        setTimeout(() => {
-          answer = [];
-          setSeq([getRandomNumber()]);
-        }, 1000);
-      }
+      setTimeout(() => {
+        answer = [];
+        setSeq(prev => [...prev, getRandomNumber()]);
+      }, 1000);
+    }
+
+    if (!isEqual) {
+      setOutput('ошибка');
+      setAreButtonsDisabled(true);
+
+      setTimeout(() => {
+        answer = [];
+        setSeq([getRandomNumber()]);
+      }, 1000);
     }
   };
 
