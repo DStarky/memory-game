@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getRandomNumber } from '../utils/getRandomNumber';
 
@@ -7,7 +7,9 @@ import TextOutput from './TextOutput';
 
 const TextVariant = () => {
   const [areButtonsDisabled, setAreButtonsDisabled] = useState<boolean>(true);
-  const [seq, setSeq] = useState<number[]>([getRandomNumber()]);
+  const [seq, setSeq] = useState<number[]>(
+    JSON.parse(localStorage.getItem('level')!) || [getRandomNumber()],
+  );
   const [output, setOutput] = useState<number | string>('запоминайте');
 
   let answer: number[] = [];
@@ -37,6 +39,10 @@ const TextVariant = () => {
       }, 1000);
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem('level', JSON.stringify(seq));
+  }, [seq]);
 
   const onFinish = () => {
     setAreButtonsDisabled(false);
