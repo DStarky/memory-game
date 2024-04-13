@@ -7,8 +7,10 @@ import TextOutput from './TextOutput';
 
 const TextVariant = () => {
   const [areButtonsDisabled, setAreButtonsDisabled] = useState<boolean>(true);
+  const levelDataString = localStorage.getItem('level');
+  const levelData = levelDataString ? JSON.parse(levelDataString) : [];
   const [seq, setSeq] = useState<number[]>(
-    JSON.parse(localStorage.getItem('level')!) || [getRandomNumber()],
+    levelData.length ? levelData : [getRandomNumber()],
   );
   const [output, setOutput] = useState<number | string>('запоминайте');
 
@@ -42,26 +44,27 @@ const TextVariant = () => {
 
   useEffect(() => {
     localStorage.setItem('level', JSON.stringify(seq));
-    const level = JSON.parse(localStorage.getItem('level')!).length;
+    const levelLength = Array.isArray(seq) ? seq.length : 0;
     const record = localStorage.getItem('record') || 0;
-    if (level > +record) localStorage.setItem('record', level.toString());
+    if (levelLength > +record)
+      localStorage.setItem('record', levelLength.toString());
   }, [seq]);
 
   const onFinish = () => {
     setAreButtonsDisabled(false);
   };
 
+  const record = localStorage.getItem('record') || 0;
+  const levelLength = Array.isArray(seq) ? seq.length : 0;
+
   return (
     <div>
       <div className="mb-8">
-        <p className="text-xl  transition-all">
-          Рекорд: <strong>{localStorage.getItem('record')}</strong>
+        <p className="text-xl transition-all">
+          Рекорд: <strong>{record}</strong>
         </p>
         <p className="text-xl transition-all">
-          Уровень:{' '}
-          <strong>
-            {JSON.parse(localStorage.getItem('level')!).length || 1}
-          </strong>
+          Уровень: <strong>{levelLength || 1}</strong>
         </p>
       </div>
 
@@ -78,4 +81,5 @@ const TextVariant = () => {
     </div>
   );
 };
+
 export default TextVariant;
