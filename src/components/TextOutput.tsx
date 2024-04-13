@@ -32,7 +32,7 @@ const TextOutput = ({ seq, onFinish, output, setOutput }: TextOutputProps) => {
   const curOutput = typeof output === 'number' ? Math.floor(output) : output;
 
   return (
-    <div className="p-12 border-[1px] rounded-md min-w-[320px] flex justify-center text-2xl border-slate-700 text-slate-700">
+    <div className="p-12 border-[1px] rounded-lg min-w-[320px] max-sm:min-w-[275px] flex justify-center text-2xl border-primary-content text-primary-content">
       <motion.span
         key={output}
         initial={{ opacity: 0, x: -50 }}

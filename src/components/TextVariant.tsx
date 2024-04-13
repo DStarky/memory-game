@@ -55,10 +55,10 @@ const TextVariant = () => {
     <div>
       <div className="mb-8">
         <p className="text-xl  transition-all">
-          рекорд: <strong>{localStorage.getItem('record')}</strong>
+          Рекорд: <strong>{localStorage.getItem('record')}</strong>
         </p>
         <p className="text-xl transition-all">
-          уровень: <strong>{seq.length}</strong>
+          Уровень: <strong>{JSON.parse(localStorage.getItem('level')!).length}</strong>
         </p>
       </div>
 
